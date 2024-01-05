@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: #363131;
+      color: #FFFFFF;
+    }
+
+    .container {
+      width: 400px;
+      height: 200px;
+
+    }
+
+    /* container */
+    .two-columns {
+      display: flex;
+    }
+
+    /* columns */
+    .two-columns>* {
+      width: 50%;
+      padding: 1rem;
+    }
+
+    #currentTime {
+      color: #FFF;
+      text-align: center;
+      font-size: 27.65px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+
+    #differentCity {
+      color: #FFF;
+      text-align: center;
+      font-size: 27.65px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container two-columns">
+    <span id="currentTime">
+    </span>
+    <span id="differentCity">
+    </span>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
