@@ -1,7 +1,4 @@
-document.querySelector("#go-to-options").addEventListener("click", function () {
-  if (chrome.runtime.openOptionsPage) {
-    chrome.runtime.openOptionsPage();
-  } else {
-    window.open(chrome.runtime.getURL("options.html"));
-  }
+document.addEventListener("DOMContentLoaded", function () {
+  const body = (document.getElementsByTagName("body")[0].style.backgroundColor =
+    "red");
 });

@@ -1,5 +1,6 @@
 // Saves options to chrome.storage
 const saveOptions = () => {
+  const changeColor = document.querySelector(".container");
   const color = document.getElementById("color").value;
   const likesColor = document.getElementById("like").checked;
 
