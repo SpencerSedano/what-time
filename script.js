@@ -42,6 +42,7 @@ function formatDate(date) {
 //Create an object with the different offsets of different countries
 const countriesOffset = {
   United_States: -5, // UTC-5 (Eastern Time)
+  United_States_MST: -7,
   United_Kingdom: 0, // UTC+0 (Greenwich Mean Time)
   China: 8, // UTC+8
   India: 5.5, // UTC+5:30
