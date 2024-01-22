@@ -41,52 +41,51 @@ function formatDate(date) {
 
 //Create an object with the different offsets of different countries
 const countriesOffset = {
-  United_States: -5, // UTC-5 (Eastern Time)
-  United_States_MST: -7,
-  United_Kingdom: 0, // UTC+0 (Greenwich Mean Time)
-  China: 8, // UTC+8
-  India: 5.5, // UTC+5:30
-  Brazil: -3, // UTC-3
-  Russia: 3, // UTC+3
+  Argentina: -3, // UTC-3
   Australia: 10, // UTC+10
-  Canada: -4, // UTC-4
-  Germany: 1, // UTC+1
-  Japan: 9, // UTC+9
+  Brazil: -3, // UTC-3
+  Canada: -5, // UTC-5
+  Chile: -4, // UTC-4
+  China: 8, // UTC+8
+  Colombia: -5, // UTC-5
+  Denmark: 1, // UTC+1
+  Egypt: 2, // UTC+2
+  Finland: 2, // UTC+2
   France: 1, // UTC+1
-  Mexico: -6, // UTC-6
+  Germany: 1, // UTC+1
+  Greece: 2, // UTC+2
+  India: 5.5, // UTC+5:30
+  Indonesia: 7, // UTC+7
+  Iraq: 3, // UTC+3
+  Ireland: 0, // UTC+0
   Italy: 1, // UTC+1
+  Japan: 9, // UTC+9
+  Kenya: 3, // UTC+3
+  Malaysia: 8, // UTC+8
+  Mexico: -6, // UTC-6
+  Netherlands: 1, // UTC+1
+  New_Zealand: 13, // UTC+12
+  Norway: 1, // UTC+1
+  Pakistan: 5, // UTC+5
+  Peru: -5, // UTC-5
+  Philippines: 8, // UTC+8
+  Poland: 1, // UTC+1
+  Russia: 3, // UTC+3
+  Saudi_Arabia: 3, // UTC+3
+  Singapore: 8, // UTC+8
+  South_Africa: 2, // UTC+2
   South_Korea: 9, // UTC+9
   Spain: 1, // UTC+1
-  Indonesia: 7, // UTC+7
-  Turkey: 3, // UTC+3
-  Netherlands: 1, // UTC+1
-  Saudi_Arabia: 3, // UTC+3
-  Argentina: -3, // UTC-3
-  Pakistan: 5, // UTC+5
-  Poland: 1, // UTC+1
-  Colombia: -5, // UTC-5
-  Canada: -7, // UTC-7 (Mountain Time)
-  Thailand: 7, // UTC+7
-  Malaysia: 8, // UTC+8
-  Philippines: 8, // UTC+8
-  Egypt: 2, // UTC+2
-  Vietnam: 7, // UTC+7
-  South_Africa: 2, // UTC+2
-  Peru: -5, // UTC-5
-  Chile: -4, // UTC-4
-  Ukraine: 2, // UTC+2
-  Kenya: 3, // UTC+3
-  Iraq: 3, // UTC+3
-  Greece: 2, // UTC+2
   Sweden: 1, // UTC+1
   Switzerland: 1, // UTC+1
-  Norway: 1, // UTC+1
-  Denmark: 1, // UTC+1
-  Finland: 2, // UTC+2
-  Ireland: 0, // UTC+0
-  New_Zealand: 12, // UTC+12
-  Singapore: 8, // UTC+8
   Taiwan: 8, // UTC+8
+  Thailand: 7, // UTC+7
+  Turkey: 3, // UTC+3
+  Ukraine: 2, // UTC+2
+  United_Kingdom: 0, // UTC+0 (Greenwich Mean Time)
+  United_States_EST: -5, // UTC-5 (Eastern Time)
+  United_States_MST: -7, // UTC-7 (Mountain Standard Time)
+  Vietnam: 7, // UTC+7
 };
 
 //Create a function to store the UTC
@@ -113,5 +112,20 @@ const secondGettingUTC = (country) => {
   differentCity.innerHTML = e;
 };
 
-firstGettingUTC(countriesOffset.Taiwan);
-secondGettingUTC(countriesOffset.Peru);
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.countrySelectOne) {
+    // Update the background color when a message is received
+    firstGettingUTC(countriesOffset[message.countrySelectOne]);
+  }
+  if (message.countrySelectTwo) {
+    secondGettingUTC(countriesOffset[message.countrySelectTwo]);
+  }
+});
+
+// If no color is choose, red is the default option
+chrome.storage.sync.get({ countryOne: "Taiwan" }, (items) => {
+  firstGettingUTC(countriesOffset[items.countryOne]);
+});
+chrome.storage.sync.get({ countryTwo: "Peru" }, (items) => {
+  secondGettingUTC(countriesOffset[items.countryTwo]);
+});

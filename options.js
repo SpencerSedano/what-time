@@ -4,8 +4,17 @@ const saveOptions = () => {
   const selectedColor = colorsSelect.value;
   const likesColor = document.getElementById("like").checked;
 
+  /* setting countries time */
+  const countrySelectOne = document.querySelector("#countryone").value;
+  const countrySelectTwo = document.querySelector("#countrytwo").value;
+
   chrome.storage.sync.set(
-    { favoriteColor: selectedColor, likesColor: likesColor },
+    {
+      favoriteColor: selectedColor,
+      likesColor: likesColor,
+      countryOne: countrySelectOne,
+      countryTwo: countrySelectTwo,
+    },
     () => {
       // Update status to let the user know options were saved.
       const status = document.getElementById("status");
@@ -18,6 +27,20 @@ const saveOptions = () => {
       if (selectedColor) {
         document.body.style.backgroundColor = selectedColor;
       }
+
+      /* Set the time after saving the options */
+      if (countrySelectOne) {
+        console.log(`This is country select one: ${countrySelectOne}`);
+      }
+      if (countrySelectTwo) {
+        console.log(countrySelectTwo);
+      }
+      chrome.runtime.sendMessage({
+        colorChanged: true,
+        selectedColor,
+        countrySelectOne,
+        countrySelectTwo,
+      });
     }
   );
 };
