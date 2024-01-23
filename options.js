@@ -28,13 +28,6 @@ const saveOptions = () => {
         document.body.style.backgroundColor = selectedColor;
       }
 
-      /* Set the time after saving the options */
-      if (countrySelectOne) {
-        console.log(`This is country select one: ${countrySelectOne}`);
-      }
-      if (countrySelectTwo) {
-        console.log(countrySelectTwo);
-      }
       chrome.runtime.sendMessage({
         colorChanged: true,
         selectedColor,

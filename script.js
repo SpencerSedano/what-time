@@ -1,5 +1,7 @@
 const currentTime = document.querySelector("#currentTime");
 const differentCity = document.querySelector("#differentCity");
+const nameCountryOne = document.querySelector("#nameCountryOne");
+const nameCountryTwo = document.querySelector("#nameCountryTwo");
 
 // stores the current time in milliseconds
 //const localTime = timeNow.getTime();
@@ -120,12 +122,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.countrySelectTwo) {
     secondGettingUTC(countriesOffset[message.countrySelectTwo]);
   }
+  nameCountryOne.textContent = message.countrySelectOne;
+  nameCountryTwo.textContent = message.countrySelectTwo;
 });
 
 // If no color is choose, red is the default option
 chrome.storage.sync.get({ countryOne: "Taiwan" }, (items) => {
   firstGettingUTC(countriesOffset[items.countryOne]);
+  nameCountryOne.textContent = items.countryOne;
 });
 chrome.storage.sync.get({ countryTwo: "Peru" }, (items) => {
   secondGettingUTC(countriesOffset[items.countryTwo]);
+  nameCountryTwo.textContent = items.countryTwo;
 });
