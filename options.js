@@ -1,3 +1,4 @@
+
 // Saves options to chrome.storage
 const saveOptions = () => {
   const colorsSelect = document.querySelector("#color");

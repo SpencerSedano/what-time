@@ -33,6 +33,17 @@
       padding: 1rem;
     }
 
+    .firstTimeContainer {
+      width: 200px;
+      height: 100px;
+      overflow: hidden;
+    }
+
+    #firstTimeImage {
+      width: 50px;
+      height: 60px;
+    }
+
     #currentTime {
       color: #FFF;
       text-align: center;
@@ -62,11 +73,16 @@
 <body>
   <!-- TODO: add name of country when options country is chosen, add the name to the popup -->
   <div class="container two-columns">
-    <span id="currentTime">
-    </span>
-    <span id="differentCity">
-    </span>
+    <div class="firstTimeContainer">
+      <span id="currentTime"></span>
+      <img id="firstTimeImage" src="" alt="">
+    </div>
 
+    <div class="secondTimeContainer">
+
+      <span id="differentCity"></span>
+      <img id="secondTimeImage" src="" alt="">
+    </div>
   </div>
   <div class="nameOfCountries">
     <p id="nameCountryOne">CountryOne</p>

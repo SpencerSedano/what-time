@@ -3,6 +3,9 @@ const differentCity = document.querySelector("#differentCity");
 const nameCountryOne = document.querySelector("#nameCountryOne");
 const nameCountryTwo = document.querySelector("#nameCountryTwo");
 
+const firstTimeImage = document.querySelector("#firstTimeImage");
+const secondTimeImage = document.querySelector("#secondTimeImage");
+
 // stores the current time in milliseconds
 //const localTime = timeNow.getTime();
 // stores the time zone offset in minutes and converts it
@@ -90,6 +93,14 @@ const countriesOffset = {
   Vietnam: 7, // UTC+7
 };
 
+const countryFlag = {
+  Peru: "./flags/peru.jpg",
+  Taiwan: "./flags/taiwan.jpg",
+};
+
+console.log(countryFlag.Peru);
+console.log(countryFlag.Taiwan);
+
 //Create a function to store the UTC
 const firstGettingUTC = (country) => {
   const timeNow = new Date();
@@ -130,6 +141,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 chrome.storage.sync.get({ countryOne: "Taiwan" }, (items) => {
   firstGettingUTC(countriesOffset[items.countryOne]);
   nameCountryOne.textContent = items.countryOne;
+  firstTimeImage.src = countryFlag.Peru;
 });
 chrome.storage.sync.get({ countryTwo: "Peru" }, (items) => {
   secondGettingUTC(countriesOffset[items.countryTwo]);
